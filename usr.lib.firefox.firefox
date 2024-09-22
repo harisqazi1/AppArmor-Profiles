@@ -2,8 +2,6 @@
 abi <abi/3.0>,
 
 /usr/lib/firefox/firefox flags=(complain) {
-  include <abstractions/python>
-
   capability sys_admin,
   capability sys_chroot,
   capability sys_ptrace,
