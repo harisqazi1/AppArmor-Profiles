@@ -1,12 +1,12 @@
-# Last Modified: Mon Sep 23 17:41:43 2024
+# Last Modified: Thu Oct  3 09:46:51 2024
 abi <abi/3.0>,
 
 include <tunables/global>
 
-/usr/lib/firefox/firefox flags=(complain) {
-  capability sys_admin,
-  capability sys_chroot,
-  capability sys_ptrace,
+/usr/lib/firefox/firefox {
+  deny capability sys_admin,
+  deny capability sys_chroot,
+  deny capability sys_ptrace,
 
   network inet dgram,
   network inet stream,
@@ -96,7 +96,7 @@ include <tunables/global>
   /usr/lib/firefox/glxtest mrix,
   /usr/lib/locale/** r,
   /usr/lib/python3.10/ r,
-  /usr/lib/python3.10/** r,
+  /usr/lib/python3.10/** mr,
   /usr/lib/python3/** mr,
   /usr/lib/x86_64-linux-gnu/* mr,
   /usr/lib/x86_64-linux-gnu/** mr,
@@ -114,6 +114,7 @@ include <tunables/global>
   /var/lib/flatpak/exports/share/** r,
   /var/lib/snapd/desktop/*/ r,
   /var/lib/snapd/desktop/applications/* r,
+  @{XDG_DOWNLOAD_DIR}/** rw,
   owner /home/*/.bash_history r,
   owner /home/*/.cache/ r,
   owner /home/*/.cache/* rwk,
@@ -128,7 +129,10 @@ include <tunables/global>
   owner /home/*/.mozilla/** rwk,
   owner /home/*/.mozilla/firefox/** r,
   owner /home/*/.themes/** r,
+  owner /home/*/Downloads/ r,
+  owner /home/*/Downloads/* w,
   owner /home/haris/.local/** r,
+  owner /home/haris/.local/** w,
   owner /home/user/.local/share/* w,
   owner /proc/** rw,
   owner /run/user/** r,
